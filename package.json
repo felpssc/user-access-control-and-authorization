@@ -1,11 +1,11 @@
 {
   "name": "template-node-typescript",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "node build/index.js",
+    "start": "nodemon src/server.ts",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts"
   },
   "devDependencies": {

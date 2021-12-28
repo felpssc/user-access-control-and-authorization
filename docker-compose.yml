@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app_database:
+    image: mongo
+    container_name: API_database
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=blog
+    network_mode: "host"
+  app:
+    build: .
+    container_name: API 
+    restart: always
+    volumes:
+      - .:/usr/app
+    network_mode: "host"
