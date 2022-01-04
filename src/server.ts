@@ -1,6 +1,9 @@
 import { app } from './app';
+import { db as databaseConnection } from './database/db';
 
-app.listen(3000, () => {
-  // eslint-disable-next-line no-console
-  console.log('🔥 Server started on port 3000');
-});
+try {
+  databaseConnection();
+  app.listen(3000, () => console.log('🔥 Server started on 3000'));
+} catch (error) {
+  console.error(error);
+}
