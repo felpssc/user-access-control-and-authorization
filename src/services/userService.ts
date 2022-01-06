@@ -63,9 +63,16 @@ const deleteUserById = async (id: string):Promise<void> => {
   await User.deleteOne({ _id: id });
 };
 
+const changeUserType = async (id: string, type: 'subscriber' | 'editor' | 'admin'):Promise<IUser | null> => {
+  const updatedUser = await User.findByIdAndUpdate(id, { type }, { new: true });
+
+  return updatedUser;
+};
+
 export {
   listUsers,
   create,
   update,
   deleteUserById,
+  changeUserType,
 };

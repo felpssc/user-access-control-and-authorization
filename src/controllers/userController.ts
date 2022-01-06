@@ -4,6 +4,7 @@ import {
   create,
   update,
   deleteUserById,
+  changeUserType,
 } from '../services/userService';
 
 const list = async (req: Request, res: Response) => {
@@ -49,6 +50,18 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
+const changeType = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { type } = req.body;
+
+  try {
+    const user = await changeUserType(id, type);
+    return res.status(200).json(user);
+  } catch (error: any) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 export {
-  list, createUser, updateUser, deleteUser,
+  list, createUser, updateUser, deleteUser, changeType,
 };
