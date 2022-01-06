@@ -16,7 +16,11 @@ const PostSchema = new mongoose.Schema<IPost>({
   slug: { type: String, required: true },
   body: { type: String, required: true },
   status: { type: String, required: true },
-  created_by: { type: String, required: true },
+  created_by: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 });
