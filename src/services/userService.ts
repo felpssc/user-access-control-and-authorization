@@ -48,6 +48,12 @@ const create = async ({ name, email, password }: ICreateUser):Promise<IGetUser> 
 };
 
 const update = async ({ name }: IUpdateUser, id: string):Promise<IUser | null> => {
+  const user = await User.findById(id);
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
   const updatedUser = await User.findByIdAndUpdate(id, { name }, { new: true });
 
   return updatedUser;
@@ -64,6 +70,12 @@ const deleteUserById = async (id: string):Promise<void> => {
 };
 
 const changeUserType = async (id: string, type: 'subscriber' | 'editor' | 'admin'):Promise<IUser | null> => {
+  const user = await User.findById(id);
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
   const updatedUser = await User.findByIdAndUpdate(id, { type }, { new: true });
 
   return updatedUser;
